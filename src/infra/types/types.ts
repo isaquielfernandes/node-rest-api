@@ -3,7 +3,7 @@ export interface ForecastData {
     cod: string;
     message: number;
     cnt: number;
-    list: Forecast[];
+    list: IForecast[];
 }
 
 export interface City {
@@ -19,15 +19,15 @@ export interface Coord {
     lat: number;
 }
 
-export interface Forecast {
+export interface IForecast {
     dt: number;
     sunrise: number;
     sunset: number;
-    temp: Temperature;
+    temp: ITemperature;
     feels_like: FeelsLike;
     pressure: number;
     humidity: number;
-    weather: Weather[];
+    weather: IWeather[];
     speed: number;
     deg: number;
     clouds: number;
@@ -41,7 +41,7 @@ export interface FeelsLike {
     morn: number;
 }
 
-export interface Temperature {
+export interface ITemperature {
     day: number;
     min: number;
     max:   number;
@@ -50,7 +50,7 @@ export interface Temperature {
     morn: number;
 }
 
-export interface Weather {
+export interface IWeather {
     id: number;
     main: string;
     description: string;

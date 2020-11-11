@@ -1,10 +1,10 @@
-import {Entity, PrimaryGeneratedColumn, Column, OneToMany, OneToOne, JoinColumn} from "typeorm";
-import {Temp} from "./Temp.js";
-import {FeelsLike} from "./FeelsLike.js";
-import {Weather} from "./Weather.js";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, OneToOne, JoinColumn } from "typeorm";
+import Temperature from "./Temperature";
+import { FeelsLike } from "./FeelsLike";
+import { Weather } from "./Weather";
 
 @Entity('list')
-export class List {
+export class Forecast {
 
     @PrimaryGeneratedColumn()
     id: number;
@@ -18,9 +18,9 @@ export class List {
     @Column()
     sunset: number;
 
-    @OneToOne(type => Temp)
+    @OneToOne(type => Temperature)
     @JoinColumn()
-    temp: Temp;
+    temp: Temperature;
 
     @OneToOne(type => FeelsLike)
     @JoinColumn()

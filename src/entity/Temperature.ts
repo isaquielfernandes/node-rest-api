@@ -1,7 +1,7 @@
 import {Entity, Column, PrimaryGeneratedColumn} from "typeorm";
 
-@Entity()
-export class Temp {
+@Entity("temp")
+export default class Temperature {
 
     @PrimaryGeneratedColumn()
     id: number;

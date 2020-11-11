@@ -15,6 +15,7 @@ export default class ForecastDataController {
         "list.weather",
       ],
     });
+    console.log(results)
     return res.json(results);
   };
 
@@ -64,6 +65,7 @@ export default class ForecastDataController {
 
       .where("city.name = :city", { city: req.params.city })
       .getOne();
+    console.log(results)
     return res.json(results);
   };
 

@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
-import { List } from "./List.js";
+import { Forecast } from "./Forecast";
 
 @Entity('weather')
 export class Weather {
@@ -16,6 +16,6 @@ export class Weather {
     @Column()
     icon: string;
 
-    @ManyToOne(() => List, l => l.weather)
-    list: List;
+    @ManyToOne(() => Forecast, forecast => forecast.weather)
+    list: Forecast;
 }

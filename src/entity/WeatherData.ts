@@ -1,6 +1,6 @@
-import {Entity, Column, PrimaryGeneratedColumn, ManyToMany, ManyToOne, JoinTable} from "typeorm";
-import {City} from "./City.js";
-import {List} from "./List.js";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, ManyToOne, JoinTable } from "typeorm";
+import { City } from "./City";
+import { Forecast } from "./Forecast";
 
 @Entity()
 export class WeatherData {
@@ -20,9 +20,9 @@ export class WeatherData {
     @Column({type: 'numeric'})
     cnt: number;
 
-    @ManyToMany(type => List, {
+    @ManyToMany(type => Forecast, {
         cascade: true
     })
     @JoinTable()
-    list: List[];
+    list: Forecast[];
 }

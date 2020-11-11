@@ -1,28 +1,25 @@
 import { Request, Response } from "express";
-import { getRepository } from "typeorm";
-import { FeelsLike } from "../entity/FeelsLike";
+import { FeelsLikeService } from "../services/FeelsLikeService";
 
 export default class FeelsLikeController {
   
   public findAll = async (req: Request, res: Response): Promise<Response> => {
-    const results = await getRepository(FeelsLike).find();
+    const feelsLikeService = new FeelsLikeService();
+    const results = await feelsLikeService.findAll();
     return res.json(results);
   };
 
   public findById = async (req: Request, res: Response): Promise<Response> => {
-    const results = await getRepository(FeelsLike).findOne(req.params.id);
-    return res.json(results);
+    const id = parseInt(req.params.id);
+    const feelsLikeService = new FeelsLikeService();
+    const feelsLike = await feelsLikeService.findById({ id });
+    return res.json(feelsLike);
   };
 
   public create = async (req: Request, res: Response): Promise<Response> => {
     const { day, night, eve, morn } = req.body;
-    const feelsLike = new FeelsLike();
-    feelsLike.day = parseFloat(day);
-    feelsLike.night = parseFloat(night);
-    feelsLike.eve = parseFloat(eve);
-    feelsLike.morn = parseFloat(morn);
-    const newFeelsLike = await getRepository(FeelsLike).create(feelsLike);
-    const results = await getRepository(FeelsLike).save(newFeelsLike);
-    return res.status(201).json(results);
+    const feelsLikeService = new FeelsLikeService();
+    const feelsLike = await feelsLikeService.insert({ day, night, eve, morn });
+    return res.status(201).json(feelsLike);
   };
 }

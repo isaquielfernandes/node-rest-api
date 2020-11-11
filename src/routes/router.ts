@@ -6,7 +6,6 @@ import TemperatureController from "../controllers/TemperatureController";
 import FeelsLikeController from "../controllers/FeelsLikeController";
 import ForecastController from "../controllers/ForecastController";
 import ForecastDataController from "../controllers/ForecastDataController";
-import { getWeatherByCity } from "../controllers/index.controller";
 
 
 const router = Router();
@@ -30,6 +29,7 @@ router.post('/temp/', temperatureController.create);
 // FeelsLike
 const feelsLikeController = new FeelsLikeController();
 router.get('/feels-like/', feelsLikeController.findAll);
+router.get('/feels-like/:id', feelsLikeController.findById);
 router.post('/feels-like/', feelsLikeController.create);
 
 // weather
@@ -48,8 +48,5 @@ const forecastDataController = new ForecastDataController();
 router.get('/forecast/', forecastDataController.findAll);
 router.get('/forecast/:city', forecastDataController.findByCity);
 router.post('/forecast/', forecastDataController.create);
-
-//api.openweathermap.org
-router.get('/open-weather/:city', getWeatherByCity);
 
 export default router
